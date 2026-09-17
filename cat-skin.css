@@ -1,0 +1,49 @@
+/*
+Cat image overlay for GamePad Viewer - Xbox One
+Use this as EDIT CSS while Xbox One is selected.
+Keep cat-skin.jpg beside this CSS on your web host.
+*/
+
+.controller.edit {
+    position: relative !important;
+}
+
+/* Put the exact cat artwork inside the controller area without blocking inputs. */
+.controller.edit::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    width: 720px;
+    height: 720px;
+    transform: translate(-50%, -50%);
+    background: url("./cat-skin.jpg") center center / cover no-repeat;
+    border-radius: 50%;
+    opacity: 0.88;
+    pointer-events: none;
+    filter: drop-shadow(0 0 18px rgba(255, 77, 184, .38));
+}
+
+/* Keep all of GamePad Viewer's working controller controls above the picture. */
+.controller.edit > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Make the normal controller shell partly transparent so the artwork shows through. */
+.controller.edit .back,
+.controller.edit .start,
+.controller.edit .abxy,
+.controller.edit .dpad,
+.controller.edit .stick,
+.controller.edit .bumper,
+.controller.edit .trigger {
+    z-index: 3;
+}
+
+/* Pink glow when GamePad Viewer adds its pressed class. */
+.controller.edit .pressed,
+.controller.edit .active {
+    filter: drop-shadow(0 0 10px #ff4db8) brightness(1.25);
+}
